@@ -24,11 +24,18 @@
         public Result<SomeClass> TestFailResultWithObject()
         {
             var doesSomethingExist = this._doSomeWorkThatWillFail();
+
+            // This will always fail for this example
             if (doesSomethingExist == false)
             {
+                // This is how I handle the fail
+                // This is creating an exception to be thrown.
+                // ERROR: Result is in status failed. Value is not set.
                 return Result.Fail<SomeClass>("This failed because of an external check or blah blah reason.");
             }
 
+
+            // The code below will never be hit in this example. 
             var someResultToReturnOnSuccess = this._getSomeClassOnSuccess();
 
 
@@ -43,6 +50,8 @@
         public Result<SomeClass> TestSuccessResultWithObject()
         {
             var doesSomethingExist = this._doSomeWorkThatWillPass();
+            
+            // This IF statement will never be hit in this example.
             if (doesSomethingExist == false)
             {
                 return Result.Fail<SomeClass>("This failed because of an external check or blah blah reason.");
