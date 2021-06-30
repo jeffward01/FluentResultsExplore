@@ -15,6 +15,12 @@
             return Result.Ok();
         }
 
+
+        /// <summary>
+        /// This will fail for some reason. It throws error:
+        /// ERROR: Result is in status failed. Value is not set.
+        /// </summary>
+        /// <returns></returns>
         public Result<SomeClass> TestFailResultWithObject()
         {
             var doesSomethingExist = this._doSomeWorkThatWillFail();
@@ -29,6 +35,11 @@
             return Result.Ok(someResultToReturnOnSuccess);
         }
 
+
+        /// <summary>
+        /// This returns an Result with an embedded object. Appears to be working fine.
+        /// </summary>
+        /// <returns></returns>
         public Result<SomeClass> TestSuccessResultWithObject()
         {
             var doesSomethingExist = this._doSomeWorkThatWillPass();
@@ -39,8 +50,12 @@
 
             var someResultToReturnOnSuccess = this._getSomeClassOnSuccess();
 
-
+            // Question - 
+            // A.) Is it better to return this below
             return Result.Ok(someResultToReturnOnSuccess);
+
+            //B.) or is it better to return: someResultToReturnOnSuccess.ToResult() 
+            // Instead of what is above?
         }
 
 
